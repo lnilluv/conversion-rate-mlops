@@ -1,24 +1,27 @@
-# <p align="center">Bloc 3: Jedha Certification</p>
-  
-*Supervised & Unsupervised ML*
+# Conversion Rate MLOps Repository
 
-#  🗂️ Projects
-- 🏪 **Walmart Sales**
+This repository showcases the productionized version of the original Conversion Rate challenge, refactored from notebook-first experimentation into a deployable ML service-style project.
 
-> Walmart's marketing service has asked you to build a machine learning model able to estimate the weekly sales in their stores, with the best precision possible on the predictions made. Such a model would help them understand better how the sales are influenced by economic indicators, and might be used to plan future marketing campaigns.
+## What was improved
 
-----------
+- Split the initial multi-project repository into three dedicated repos to improve ownership and deployment scope:
+  - `https://github.com/lnilluv/conversion-rate-mlops`
+  - `https://github.com/lnilluv/uber-hotzone-ml`
+  - `https://github.com/lnilluv/walmart-sales-forecast`
+- Introduced hexagonal architecture in production paths (`domain`, `application`, `adapters`, `bootstrap`)
+- Added CLI entrypoints for deterministic local/VPS execution
+- Added smoke tests and Docker workflows for reproducible runtime checks
+- Hardened repository security posture (`.env` strategy, artifact ignore rules, dependency audits)
 
-- 📧 **Conversion Rate Challenge**
-> The data scientists who created the newsletter would like to understand better the behaviour of the users visiting their website. They would like to know if it's possible to build a model that predicts if a given user will subscribe to the newsletter, by using just a few information about the user. They would like to analyze the parameters of the model to highlight features that are important to explain the behaviour of the users, and maybe discover a new lever for action to improve the newsletter's conversion rate.
+## Active project in this repo
 
-> They designed a competition aiming at building a model that allows to predict the conversions (i.e. when a user will subscribe to the newsletter). To do so, they open-sourced a dataset containing some data about the traffic on their website. To assess the rankings of the different competing teams, they decided to use the f1-score.
+- `conversion_rate/`
 
-----------
-- 🚖 **Uber Pickups**
-> One of the main pain point that Uber's team found is that sometimes drivers are not around when users need them. For example, a user might be in San Francisco's Financial District whereas Uber drivers are looking for customers in Castro.
+## Quick start
 
-> Eventhough both neighborhood are not that far away, users would still have to wait 10 to 15 minutes before being picked-up, which is too long. Uber's research shows that users accept to wait 5-7 minutes, otherwise they would cancel their ride.
-
-> Therefore, Uber's data team would like to work on a project where their app would recommend hot-zones in major cities to be in at any given time of day.
-        
+```bash
+cd conversion_rate
+export PYTHONPATH=src
+python3 -m unittest discover -s tests/unit -p 'test_*.py'
+./scripts/smoke_test.sh
+```

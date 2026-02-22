@@ -123,3 +123,12 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# Local security and planning notes (never commit)
+*security-notes*.md
+*security-checklist*.md
+*local-notes*.md
+
+# Project artifacts
+artifacts/
+models/
